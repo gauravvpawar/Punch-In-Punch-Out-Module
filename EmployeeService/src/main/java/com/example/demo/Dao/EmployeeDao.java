@@ -55,9 +55,14 @@ public class EmployeeDao implements EmployeeService{
 		return er.findByEmail(email);
 	}
 
-	public Employee findByEmailAndPassword(String email , String password)
-	{
-		return er.findByEmailAndPassword(email ,password);
+	@Override
+	public Employee findByEmailAndPassword(String email, String password) {
+		Employee employee = er.findByEmailAndPassword(email, password);
+		long id = employee.getId();
+		List<Attendance> la = rt.getForObject("http://localhost:9092/attendance/history/"+id, ArrayList.class);
+		employee.setAttendance(la);
+		return employee;
+
 	}
 
 	

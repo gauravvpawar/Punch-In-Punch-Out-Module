@@ -44,6 +44,14 @@ public class EmployeeController {
 		 return es.findByEmail(email);
 	 }
 	 
+//	 to fetch all the data @kaif 
+	 @GetMapping("/fetchByEmailAndPassword")
+	 public Employee emailAndPass(@RequestParam String email,@RequestParam String password) {
+		 return es.findByEmailAndPassword(email, password);
+	 }
+	 
+	 
+	 
 //	 for to login the  data it return when email and password is match
 	 @GetMapping("/employeeLogin")
 	 public Employee login(@RequestParam String email , @RequestParam String password)
